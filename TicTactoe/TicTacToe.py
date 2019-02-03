@@ -2,8 +2,7 @@
 TicTacToe
 Michael Kagnew and Sandra Fang
 
-NO working reset button, does not end when immediate winner, just the bare bones"""
-
+Will output the winner immediately, still has no reset button"""
 
 from tkinter import *
 from tkinter import messagebox 
@@ -12,19 +11,19 @@ root= Tk()
 root.title("Michael And Sandula's tic tac toe")
 
 bclick= True
+counter = int(0)
+
+
 
 def tictactoe(buttons):
-    
     global bclick
+    global counter
     if buttons["text"]==" " and bclick ==True:
         buttons["text"]= "X"
+        counter+= 1
         bclick =False
-
-    elif buttons["text"]==" "and bclick ==False:
-         buttons["text"]= "O"
-         bclick =True
-
-    elif(button1["text"] == "X" and button2["text"]== "X" and button3 ["text"]== "X" or
+        
+        if(button1["text"] == "X" and button2["text"]== "X" and button3 ["text"]== "X" or
          button1["text"] == "X" and button5["text"]== "X" and button9 ["text"]== "X" or
          button1["text"] == "X" and button4["text"]== "X" and button7 ["text"]== "X" or
          button4["text"] == "X" and button5["text"]== "X" and  button6 ["text"]== "X" or
@@ -32,13 +31,18 @@ def tictactoe(buttons):
          button3["text"] == "X" and button5["text"]== "X" and  button7 ["text"]== "X" or
          button2["text"] == "X" and button5["text"]== "X" and  button8 ["text"]== "X" or
          button3["text"] == "X" and button6["text"]== "X" and  button9 ["text"]== "X" ):
-       
-         messagebox.showinfo("Winner", "WINNER WINNER CHICKEN DINNER user X!")
+            messagebox.showinfo("Results", "WINNER WINNER CHICKEN DINNER user X!")
+        if counter == 9:
+            messagebox.showinfo("Results", "TIE GAME!")
+
+   
+
+    elif buttons["text"]==" "and bclick ==False:
+         buttons["text"]= "O"
+         counter+= 1
+         bclick =True
          
-         
-         
-         
-    elif(button1["text"] == "O" and button2["text"]== "O" and  button3 ["text"]== "O" or
+         if(button1["text"] == "O" and button2["text"]== "O" and  button3 ["text"]== "O" or
          button1["text"] == "O" and button5["text"]== "O" and  button9 ["text"]== "O" or
          button1["text"] == "O" and button4["text"]== "O" and  button7 ["text"]== "O" or
          button4["text"] == "O" and button5["text"]== "O" and  button6 ["text"]== "O" or
@@ -46,9 +50,8 @@ def tictactoe(buttons):
          button3["text"] == "O" and button5["text"]== "O" and  button7 ["text"]== "O" or
          button2["text"] == "O" and button5["text"]== "O" and button8 ["text"]== "O" or
          button3["text"] == "O" and button6["text"]== "O" and  button9 ["text"]== "O" ):
-        
-         messagebox.showinfo("Winner", "WINNER WINNER CHICKEN DINNER user O!")
-         
+             messagebox.showinfo("Results", "WINNER WINNER CHICKEN DINNER user O!")
+    
     
 
 
@@ -81,4 +84,7 @@ button8.grid(row=3, column=1, sticky=W+E+N+S)
 button9=Button(root, text=" ", font=("Arial 35 bold"), height=4, width= 8, command=lambda:tictactoe(button9))
 button9.grid(row=3, column=2, sticky=W+E+N+S)
 
+
+
 root.mainloop()
+
